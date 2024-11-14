@@ -29,7 +29,7 @@ case "$1" in
         "$COMMANDS_DIR/list.sh"  # List all workspaces
         ;;
     open)
-        "$COMMANDS_DIR/open.sh" "$2"  # Open a workspace
+        source "$COMMANDS_DIR/open.sh" "$2"  # Open a workspace
         ;;
     uninstall)
         "$COMMANDS_DIR/uninstall.sh"  # Uninstall and clean up the framework

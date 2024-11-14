@@ -3,22 +3,36 @@
 # Path to the .zshrc file
 ZSHRC="$HOME/.zshrc"
 
-# Add alias for the workspace command
-echo "Adding alias 'workspace' to .zshrc file..."
-echo "alias workspace='$(pwd)/workspace.sh'" >> "$ZSHRC"
+# Check if the workspace function is already installed
+if ! grep -q "workspace() {" "$ZSHRC"; then
+  # Add function for the workspace command
+  echo "Adding function 'workspace' to .zshrc file..."
+  cat << 'EOF' >> "$ZSHRC"
+workspace() {
+  source /mnt/c/WORKSPACE/workspace-framework/workspace.sh "$@"
+}
+EOF
+else
+  echo "Function 'workspace' is already installed in .zshrc file."
+fi
 
-# Add autocompletion for the workspace command
-echo "Adding autocompletion for 'workspace'..."
-cat << 'EOF' >> "$ZSHRC"
+# Check if the autocompletion for the workspace command is already installed
+if ! grep -q "_workspace_autocomplete" "$ZSHRC"; then
+  # Add autocompletion for the workspace command
+  echo "Adding autocompletion for 'workspace'..."
+  cat << 'EOF' >> "$ZSHRC"
 
 # Autocompletion for workspace command
 _workspace_autocomplete() {
-    local commands="add change list help"
+    local commands="current create change drop help install list open uninstall"
     local cur_word=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=( $(compgen -W "$commands" -- "$cur_word") )
 }
 compdef _workspace_autocomplete workspace
 EOF
+else
+  echo "Autocompletion for 'workspace' is already installed in .zshrc file."
+fi
 
 # Refresh the shell configuration
 echo "Installation complete. Refreshing shell..."
