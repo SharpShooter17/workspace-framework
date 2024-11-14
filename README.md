@@ -32,7 +32,7 @@ All command definitions are located in the `commands` directory. Each Workspace 
 through the `workspace.yaml` file in the directory indicated by the environment
 variable `WORKSPACE_<workspace-name>`.
 
-#### Change Workspace
+### Change Workspace
 
 Switches to the Workspace with the provided name and saves it in the configuration
 file `config.yaml`.
@@ -41,7 +41,7 @@ file `config.yaml`.
 workspace change <workspace-name>
 ```
 
-#### Invoke command in Workspace
+### Invoke command in Workspace
 
 Executes the command in the current Workspace directory. The command must be provided as an
 argument. Command scripts must be located in the `commands` directory of the Workspace.
@@ -50,7 +50,7 @@ argument. Command scripts must be located in the `commands` directory of the Wor
 workspace cmd <command>
 ```
 
-#### Create Workspace
+### Create Workspace
 
 Creates a new Workspace with the specified name. If the Workspace already exists, an error message
 will be displayed.
@@ -59,7 +59,7 @@ will be displayed.
 workspace create <workspace-name>
 ```
 
-#### Current Workspace
+### Current Workspace
 
 Show the current workspace.
 
@@ -67,7 +67,7 @@ Show the current workspace.
 workspace current
 ```
 
-#### Drop
+### Drop
 
 Drop a workspace from the configuration file and delete the workspace directory.
 
@@ -75,7 +75,7 @@ Drop a workspace from the configuration file and delete the workspace directory.
 workspace drop <workspace-name>
 ```
 
-#### Help
+### Help
 
 Displays more commands available in the framework.
 
@@ -83,7 +83,7 @@ Displays more commands available in the framework.
 workspace help
 ```
 
-#### Install
+### Install
 
 Install and configure the framework
 
@@ -91,7 +91,7 @@ Install and configure the framework
 workspace install
 ```
 
-#### List Workspace
+### List Workspace
 
 Lists all available workspaces.
 
@@ -99,7 +99,7 @@ Lists all available workspaces.
 workspace list
 ```
 
-#### Open
+### Open
 
 Change directory to the workspace directory. If you provide a workspace name, it will change to that
 workspace, otherwise it will change to the current workspace.
@@ -108,7 +108,7 @@ workspace, otherwise it will change to the current workspace.
 workspace open <workspace-name>
 ```
 
-#### Uninstall
+### Uninstall
 
 Uninstall the framework
 
