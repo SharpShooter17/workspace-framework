@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source $(dirname "$0")/current.sh
+
 # Check if a workspace name is provided
 if [[ -z "$1" ]]; then
     echo "You must provide a workspace name!"
@@ -22,8 +24,7 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
 fi
 
 # Check if the workspace to drop is the current workspace
-CURRENT_WORKSPACE=$(awk -F': ' '/^current_workspace:/ {print $2}' "$CONFIG_FILE")
-if [[ "$WORKSPACE_NAME" == "$CURRENT_WORKSPACE" ]]; then
+if [[ "$WORKSPACE_NAME" == "$(current_workspace)" ]]; then
     echo "Cannot drop the current workspace. Switch to a different workspace first."
     exit 1
 fi

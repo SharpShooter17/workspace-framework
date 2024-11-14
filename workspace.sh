@@ -10,14 +10,16 @@ case "$1" in
     change)
         "$COMMANDS_DIR/change.sh" "$2"  # Change the current workspace
         ;;
-    cmd)
-        "$COMMANDS_DIR/cmd.sh" "${@:2}"  # Execute a command from the current workspace
+    cmd) # Execute a command from the current workspace
+        source "$COMMANDS_DIR/cmd.sh" "${@:2}"
+        do_cmd "$2" "${@:3}"
         ;;
     create)
         "$COMMANDS_DIR/create.sh" "$2"  # Create a new workspace
         ;;
-    current)
-        "$COMMANDS_DIR/current.sh"  # Show the current workspace
+    current) # Show the current workspace
+        source "$COMMANDS_DIR/current.sh"
+        do_current_workspace
         ;;
     drop)
         "$COMMANDS_DIR/drop.sh" "$2"  # Drop a workspace
