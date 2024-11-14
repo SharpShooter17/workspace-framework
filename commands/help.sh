@@ -12,6 +12,8 @@ help_command() {
     echo "  help                     Display this help message"
     echo "  install                  Install and configure the framework"
     echo "  list                     List all available workspaces"
+    echo "  open [workspace-name]    Open a workspace"
+    eho  "  uninstall                Uninstall the framework"
     echo ""
     echo "Each command can be used as follows:"
     echo "  workspace <command> [args]"

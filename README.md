@@ -34,7 +34,8 @@ variable `WORKSPACE_<workspace-name>`.
 
 #### Change Workspace
 
-Switches to the Workspace with the provided name and saves it in the configuration file `config.yaml`.
+Switches to the Workspace with the provided name and saves it in the configuration
+file `config.yaml`.
 
 ```zsh
 workspace change <workspace-name>
@@ -42,7 +43,8 @@ workspace change <workspace-name>
 
 #### Create Workspace
 
-Creates a new Workspace with the specified name. If the Workspace already exists, an error message will be displayed.
+Creates a new Workspace with the specified name. If the Workspace already exists, an error message
+will be displayed.
 
 ```zsh
 workspace create <workspace-name>
@@ -56,7 +58,7 @@ Show the current workspace.
 workspace current
 ```
 
-#### Drop 
+#### Drop
 
 Drop a workspace from the configuration file and delete the workspace directory.
 
@@ -86,4 +88,21 @@ Lists all available workspaces.
 
 ```zsh
 workspace list
+```
+
+#### Open
+
+Change directory to the workspace directory. If you provide a workspace name, it will change to that
+workspace, otherwise it will change to the current workspace.
+
+```zsh
+workspace open <workspace-name>
+```
+
+#### Uninstall
+
+Uninstall the framework
+
+```zsh
+workspace uninstall
 ```
