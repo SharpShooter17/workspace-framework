@@ -41,6 +41,15 @@ file `config.yaml`.
 workspace change <workspace-name>
 ```
 
+#### Invoke command in Workspace
+
+Executes the command in the current Workspace directory. The command must be provided as an
+argument. Command scripts must be located in the `commands` directory of the Workspace.
+
+```zsh
+workspace cmd <command>
+```
+
 #### Create Workspace
 
 Creates a new Workspace with the specified name. If the Workspace already exists, an error message
