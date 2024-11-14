@@ -115,3 +115,14 @@ Uninstall the framework
 ```zsh
 workspace uninstall
 ```
+
+## Troubleshooting
+
+### Missing autocompletion
+
+If the autocompletion is not working, you can try to add the following line to your `.zshrc` file:
+
+```zsh
+autoload -U compinit
+compinit
+```
