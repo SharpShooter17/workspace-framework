@@ -17,19 +17,19 @@ else
 fi
 
 # Check if the autocompletion for the workspace command is already installed
-if ! grep -q "_workspace_autocomplete" "$ZSHRC"; then
-  # Add autocompletion for the workspace command
-  echo "Adding autocompletion for 'workspace'..."
-  cat << 'EOF' >> "$ZSHRC"
+if ! grep -q "_workspace" "$ZSHRC"; then
+  COMMAND_LIST=$(ls "$COMMANDS_DIR" | awk -F'.sh' '{print $1}' | tr '\n' ' ')
 
+  TEXT_TO_ADD="
 # Autocompletion for workspace command
-_workspace_autocomplete() {
-    local commands="current create change drop help install list open uninstall"
-    local cur_word=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -W "$commands" -- "$cur_word") )
+_workspace() {
+    compadd $COMMAND_LIST
 }
-compdef _workspace_autocomplete workspace
-EOF
+compdef _workspace workspace
+"
+
+  echo "Adding autocompletion for 'workspace'..."
+  echo "$TEXT_TO_ADD" >> "$ZSHRC"
 else
   echo "Autocompletion for 'workspace' is already installed in .zshrc file."
 fi

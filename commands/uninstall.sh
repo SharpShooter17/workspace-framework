@@ -9,7 +9,7 @@ awk '/workspace\(\) {/,/}/ {next} {print}' "$ZSHRC" > ~/tmpfile && mv ~/tmpfile 
 
 # Remove autocompletion for the workspace command using awk
 echo "Removing autocompletion for 'workspace'..."
-awk '/# Autocompletion for workspace command/,/compdef _workspace_autocomplete workspace/ {next} {print}' "$ZSHRC" > ~/tmpfile && mv ~/tmpfile "$ZSHRC"
+awk '/# Autocompletion for workspace command/,/compdef _workspace workspace/ {next} {print}' "$ZSHRC" > ~/tmpfile && mv ~/tmpfile "$ZSHRC"
 
 # Refresh the shell configuration
 echo "Uninstallation complete. Refreshing shell..."

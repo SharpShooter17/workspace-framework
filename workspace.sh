@@ -3,18 +3,21 @@
 FRAMEWORK_DIR="$(cd "$(dirname "${(%):-%N}")" && pwd)" && export FRAMEWORK_DIR
 WORKSPACE_ROOT="$(dirname "$FRAMEWORK_DIR")" && export WORKSPACE_ROOT
 CONFIG_FILE="$FRAMEWORK_DIR/config.yaml" && export CONFIG_FILE
-COMMANDS_DIR="$FRAMEWORK_DIR/commands"
+COMMANDS_DIR="$FRAMEWORK_DIR/commands" && export COMMANDS_DIR
 
 # Handle framework commands
 case "$1" in
-    current)
-        "$COMMANDS_DIR/current.sh"  # Show the current workspace
+    change)
+        "$COMMANDS_DIR/change.sh" "$2"  # Change the current workspace
+        ;;
+    cmd)
+        "$COMMANDS_DIR/cmd.sh" "${@:2}"  # Execute a command from the current workspace
         ;;
     create)
         "$COMMANDS_DIR/create.sh" "$2"  # Create a new workspace
         ;;
-    change)
-        "$COMMANDS_DIR/change.sh" "$2"  # Change the current workspace
+    current)
+        "$COMMANDS_DIR/current.sh"  # Show the current workspace
         ;;
     drop)
         "$COMMANDS_DIR/drop.sh" "$2"  # Drop a workspace
