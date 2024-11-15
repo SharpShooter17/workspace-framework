@@ -15,6 +15,6 @@ do_current_workspace() {
     if [[ $? -eq 0 && -n "$workspace_name" ]]; then
         echo "Current workspace: $workspace_name"
     else
-        echo "No current workspace set."
+        echo "No current workspace set or an error occurred." >&2
     fi
 }

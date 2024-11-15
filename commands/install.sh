@@ -2,16 +2,23 @@
 
 # Path to the .zshrc file
 ZSHRC="$HOME/.zshrc"
+WORKSPACE_SCRIPT="$FRAMEWORK_DIR/workspace.sh"
 
 # Check if the workspace function is already installed
 if ! grep -q "workspace() {" "$ZSHRC"; then
   # Add function for the workspace command
   echo "Adding function 'workspace' to .zshrc file..."
-  cat << 'EOF' >> "$ZSHRC"
+  if cat << EOF >> "$ZSHRC"
 workspace() {
-  source /mnt/c/WORKSPACE/workspace-framework/workspace.sh "$@"
+  source "$WORKSPACE_SCRIPT" "\$@"
 }
 EOF
+  then
+    echo "Function 'workspace' added successfully."
+  else
+    echo "Error adding function 'workspace' to .zshrc file." >&2
+    exit 1
+  fi
 else
   echo "Function 'workspace' is already installed in .zshrc file."
 fi
@@ -29,7 +36,12 @@ compdef _workspace workspace
 "
 
   echo "Adding autocompletion for 'workspace'..."
-  echo "$TEXT_TO_ADD" >> "$ZSHRC"
+  if echo "$TEXT_TO_ADD" >> "$ZSHRC"; then
+    echo "Autocompletion for 'workspace' added successfully."
+  else
+    echo "Error adding autocompletion for 'workspace'." >&2
+    exit 1
+  fi
 else
   echo "Autocompletion for 'workspace' is already installed in .zshrc file."
 fi
