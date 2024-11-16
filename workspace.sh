@@ -39,6 +39,10 @@ case "$1" in
     uninstall)
         "$COMMANDS_DIR/uninstall.sh" || { return 1; }
         ;;
+    update)
+        source "$COMMANDS_DIR/update.sh"
+        do_update || { return 1; }
+        ;;
     *)
         echo "Unknown command. Type 'workspace help' for more information." >&2
         ;;

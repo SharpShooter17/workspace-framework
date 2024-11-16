@@ -14,6 +14,7 @@ help_command() {
     echo "  list                     List all available workspaces"
     echo "  open [workspace-name]    Open a workspace"
     echo "  uninstall                Uninstall the framework"
+    echo "  update                   Update all repositories in the current workspace"
     echo ""
     echo "Each command can be used as follows:"
     echo "  workspace <command> [args]"

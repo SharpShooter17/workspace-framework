@@ -9,6 +9,8 @@ Linux / MacOS.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
+    - [Framework Configuration](#framework-configuration)
+    - [Workspace Configuration](#workspace-configuration)
 - [Commands](#commands)
     - [Change Workspace](#change)
     - [Invoke Command in Workspace](#invoke-command-in-workspace)
@@ -20,6 +22,7 @@ Linux / MacOS.
     - [List Workspaces](#list)
     - [Open Workspace](#open)
     - [Uninstall](#uninstall)
+    - [Update Workspace](#update)
 - [Troubleshooting](#troubleshooting)
     - [Missing Autocompletion](#missing-autocompletion)
 
@@ -28,6 +31,7 @@ Linux / MacOS.
 1. Zsh shell
 2. Oh My Zsh framework
 3. yq (YAML processor)
+4. Git - required for the framework to work properly and manage repositories in the Workspace.
 
 ## Installation
 
@@ -49,7 +53,7 @@ will be added to the Zsh / Oh My Zsh environment.
 
 ## Configuration
 
-### workspace.yml
+### Framework Configuration
 
 The `workspace.yml` file is used to configure the Workspace Framework. It contains settings related
 to the current workspace and other configuration options.
@@ -59,6 +63,23 @@ to the current workspace and other configuration options.
 ```yaml
 config:
   current_workspace: default # The current workspace
+```
+
+### Workspace Configuration
+
+Each Workspace has its own configuration file, `workspace.yml`. This file contains settings related
+to the Workspace.
+
+In the Workspace configuration file, you can define the following settings:
+
+- `repositories` - a list of repositories that workspace should contain.
+
+#### Example
+
+```yaml
+repositories:
+  - git@github.com:example/example-1.git
+  - git@github.com:example/example-2.git
 ```
 
 ## Commands
@@ -149,6 +170,14 @@ Uninstall the framework and remove workspace configuration file.
 
 ```zsh
 workspace uninstall
+```
+
+### Update
+
+Clone or update all repositories in the current workspace.
+
+```zsh
+workspace update
 ```
 
 ## Troubleshooting
