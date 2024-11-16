@@ -73,6 +73,7 @@ to the Workspace.
 In the Workspace configuration file, you can define the following settings:
 
 - `repositories` - a list of repositories that workspace should contain.
+- `commands` - a list of commands that can be executed in the Workspace.
 
 #### Example
 
@@ -80,6 +81,12 @@ In the Workspace configuration file, you can define the following settings:
 repositories:
   - git@github.com:example/example-1.git
   - git@github.com:example/example-2.git
+    
+commands:
+  - name: command-1
+    script: dir-1/command-1.sh
+  - name: command-2
+    script: dir-2/command-2.sh
 ```
 
 ## Commands
