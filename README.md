@@ -1,7 +1,24 @@
 # Workspace Framework
 
-The Workspace Framework enables the organization of work environments. The execution environment is
-Linux / MacOS.
+The Workspace Framework enables the organization of work environments. The execution environment is Linux / MacOS.
+
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [Change Workspace](#change)
+  - [Invoke Command in Workspace](#invoke-command-in-workspace)
+  - [Create Workspace](#create)
+  - [Current Workspace](#current)
+  - [Drop Workspace](#drop)
+  - [Help](#help)
+  - [Install](#install)
+  - [List Workspaces](#list)
+  - [Open Workspace](#open)
+  - [Uninstall](#uninstall)
+- [Troubleshooting](#troubleshooting)
+  - [Missing Autocompletion](#missing-autocompletion)
 
 ## Requirements
 
@@ -32,7 +49,7 @@ All command definitions are located in the `commands` directory. Each Workspace 
 through the `workspace.yaml` file in the directory indicated by the environment
 variable `WORKSPACE_<workspace-name>`.
 
-### Change Workspace
+### Change
 
 Switches to the Workspace with the provided name and saves it in the configuration
 file `config.yaml`.
@@ -50,7 +67,7 @@ argument. Command scripts must be located in the `commands` directory of the Wor
 workspace cmd <command>
 ```
 
-### Create Workspace
+### Create
 
 Creates a new Workspace with the specified name. If the Workspace already exists, an error message
 will be displayed.
@@ -59,7 +76,7 @@ will be displayed.
 workspace create <workspace-name>
 ```
 
-### Current Workspace
+### Current
 
 Show the current workspace.
 
@@ -91,7 +108,7 @@ Install and configure the framework
 workspace install
 ```
 
-### List Workspace
+### List
 
 Lists all available workspaces.
 
