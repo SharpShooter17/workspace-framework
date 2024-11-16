@@ -9,6 +9,7 @@ help_command() {
     echo "  create <workspace-name>  Create a new workspace"
     echo "  current                  Show the current workspace"
     echo "  drop <workspace-name>    [WARNING] Drop a workspace from the configuration file and delete the workspace directory"
+    echo "  export_env_vars          Export environment variables from the current workspace"
     echo "  help                     Display this help message"
     echo "  install                  Install and configure the framework"
     echo "  list                     List all available workspaces"
