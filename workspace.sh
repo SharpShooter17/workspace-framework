@@ -2,7 +2,7 @@
 
 FRAMEWORK_DIR="$(cd "$(dirname "${(%):-%N}")" && pwd)" && export FRAMEWORK_DIR
 WORKSPACE_ROOT="$(dirname "$FRAMEWORK_DIR")" && export WORKSPACE_ROOT
-CONFIG_FILE="$WORKSPACE_ROOT/workspace.yaml" && export CONFIG_FILE
+CONFIG_FILE="$WORKSPACE_ROOT/workspace.yml" && export CONFIG_FILE
 COMMANDS_DIR="$FRAMEWORK_DIR/commands" && export COMMANDS_DIR
 
 # Handle framework commands

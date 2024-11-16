@@ -4,7 +4,6 @@
 if [[ -z "$1" ]]; then
     echo "You must provide a workspace name!"
     return 1
- 1
 fi
 
 WORKSPACE_NAME="$1"
@@ -18,8 +17,13 @@ fi
 
 # Update the config file with the new workspace
 if [ -f "$CONFIG_FILE" ]; then
-    awk -v new_workspace="$WORKSPACE_NAME" '/^current_workspace:/ {$2=new_workspace} 1' "$CONFIG_FILE" > ~/tmpfile && mv ~/tmpfile "$CONFIG_FILE"
-    echo "Switched to workspace '$WORKSPACE_NAME'"
+    yq ".config.current_workspace = \"$WORKSPACE_NAME\"" "$CONFIG_FILE" -y >> "$CONFIG_FILE.tmp" && mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    if [[ $? -eq 0 ]]; then
+        echo "Switched to workspace '$WORKSPACE_NAME'"
+    else
+        echo "Failed to update the config file."
+        return 1
+    fi
 else
     echo "Config file not found."
     return 1

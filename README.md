@@ -24,6 +24,7 @@ The Workspace Framework enables the organization of work environments. The execu
 
 1. Zsh shell
 2. Oh My Zsh framework
+3. yq (YAML processor)
 
 ## Installation
 
@@ -46,13 +47,13 @@ will be added to the Zsh / Oh My Zsh environment.
 ## Commands
 
 All command definitions are located in the `commands` directory. Each Workspace is configurable
-through the `workspace.yaml` file in the directory indicated by the environment
+through the `workspace.yml` file in the directory indicated by the environment
 variable `WORKSPACE_<workspace-name>`.
 
 ### Change
 
 Switches to the Workspace with the provided name and saves it in the configuration
-file `config.yaml`.
+file `workaspace.yml`.
 
 ```zsh
 workspace change <workspace-name>

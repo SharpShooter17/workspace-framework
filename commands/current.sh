@@ -1,12 +1,7 @@
 #!/bin/zsh
 
 current_workspace() {
-    if [[ -f "$CONFIG_FILE" ]]; then
-        grep 'current_workspace' "$CONFIG_FILE" | awk '{print $2}' | tr -d '"'
-    else
-        echo "Config file not found." >&2
-        return 1
-    fi
+  yq '.config.current_workspace' "$CONFIG_FILE" | tr -d '"'
 }
 
 do_current_workspace() {

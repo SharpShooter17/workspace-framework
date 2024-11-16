@@ -3,7 +3,7 @@
 # Path to the .zshrc file
 ZSHRC="$HOME/.zshrc"
 BACKUP_ZSHRC="$HOME/.zshrc.bak"
-WORKSPACE_YAML="$WORKSPACE_ROOT/workspace.yaml"
+WORKSPACE_YML="$WORKSPACE_ROOT/workspace.yml"
 
 # Create a backup of the .zshrc file
 echo "Creating a backup of the .zshrc file..."
@@ -29,18 +29,18 @@ else
     return 1
 fi
 
-# Remove workspace.yaml file
-if [ -f "$WORKSPACE_YAML" ]; then
-    echo "Removing workspace.yaml file..."
-    rm "$WORKSPACE_YAML"
+# Remove workspace.yml file
+if [ -f "$WORKSPACE_YML" ]; then
+    echo "Removing workspace.yml file..."
+    rm "$WORKSPACE_YML"
     if [ $? -eq 0 ]; then
-        echo "workspace.yaml file removed successfully."
+        echo "workspace.yml file removed successfully."
     else
-        echo "Error removing workspace.yaml file." >&2
+        echo "Error removing workspace.yml file." >&2
         return 1
     fi
 else
-    echo "workspace.yaml file does not exist."
+    echo "workspace.yml file does not exist."
 fi
 
 # Refresh the shell configuration
