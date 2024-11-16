@@ -74,6 +74,7 @@ In the Workspace configuration file, you can define the following settings:
 
 - `repositories` - a list of repositories that workspace should contain.
 - `commands` - a list of commands that can be executed in the Workspace.
+- `command_directories` - a list of directories that contain command scripts.
 
 #### Example
 
@@ -87,6 +88,10 @@ commands:
     script: dir-1/command-1.sh
   - name: command-2
     script: dir-2/command-2.sh
+    
+command_directories:
+  - command-directory-1
+  - command-directory-2
 ```
 
 ## Commands
