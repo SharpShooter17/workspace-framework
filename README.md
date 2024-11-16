@@ -1,7 +1,7 @@
 # Workspace Framework
 
-The Workspace Framework enables the organization of work environments. The execution environment is
-Linux / MacOS.
+The Workspace Framework enables the organization of work environments.
+The execution environment is Linux / MacOS.
 
 ## Table of Contents
 
@@ -41,8 +41,8 @@ To install the framework, run the following command:
 ./workspace.sh install
 ```
 
-The framework will be installed and configured in your environment. Shortcuts and autocompletion
-will be added to the Zsh / Oh My Zsh environment.
+The framework will be installed and configured in your environment.
+Shortcuts and autocompletion will be added to the Zsh / Oh My Zsh environment.
 
 ## Usage
 
@@ -55,8 +55,8 @@ will be added to the Zsh / Oh My Zsh environment.
 
 ### Framework Configuration
 
-The `workspace.yml` file is used to configure the Workspace Framework. It contains settings related
-to the current workspace and other configuration options.
+The `workspace.yml` file is used to configure the Workspace Framework.
+It contains settings related to the current workspace and other configuration options.
 
 #### Example
 
@@ -67,8 +67,8 @@ config:
 
 ### Workspace Configuration
 
-Each Workspace has its own configuration file, `workspace.yml`. This file contains settings related
-to the Workspace.
+Each Workspace has its own configuration file, `workspace.yml`.
+This file contains settings related to the Workspace.
 
 In the Workspace configuration file, you can define the following settings:
 
@@ -82,13 +82,13 @@ In the Workspace configuration file, you can define the following settings:
 repositories:
   - git@github.com:example/example-1.git
   - git@github.com:example/example-2.git
-    
+
 commands:
   - name: command-1
     script: dir-1/command-1.sh
   - name: command-2
     script: dir-2/command-2.sh
-    
+
 command_directories:
   - command-directory-1
   - command-directory-2
@@ -96,9 +96,9 @@ command_directories:
 
 ## Commands
 
-All command definitions are located in the `commands` directory. Each Workspace is configurable
-through the `workspace.yml` file in the directory indicated by the environment
-variable `WORKSPACE_<workspace-name>`.
+All command definitions are located in the `commands` directory.
+Each Workspace is configurable through the `workspace.yml` file in the directory indicated by the
+environment variable `WORKSPACE_<workspace-name>`.
 
 ### Change
 
@@ -111,8 +111,13 @@ workspace change <workspace-name>
 
 ### Invoke command in Workspace
 
-Executes the command in the current Workspace directory. The command must be provided as an
-argument. Command scripts must be located in the `commands` directory of the Workspace.
+Executes the command in the current Workspace directory.
+The command must be provided as an argument.
+If the command is not found, an error message will be displayed.
+The command must be in the `commands` list in the Workspace configuration file.
+If the command is not found on the list, the framework will search for the command in the
+directories specified in the `command_directories` list.
+If the command is not found in the directories, an error message will be displayed.
 
 ```zsh
 workspace cmd <command>
@@ -120,8 +125,8 @@ workspace cmd <command>
 
 ### Create
 
-Creates a new Workspace with the specified name. If the Workspace already exists, an error message
-will be displayed.
+Creates a new Workspace with the specified name.
+If the Workspace already exists, an error message will be displayed.
 
 ```zsh
 workspace create <workspace-name>
@@ -169,8 +174,9 @@ workspace list
 
 ### Open
 
-Change directory to the workspace directory. If you provide a workspace name, it will change to that
-workspace, otherwise it will change to the current workspace.
+Change directory to the workspace directory.
+If you provide a workspace name, it will change to that workspace, otherwise it will change to the
+current workspace.
 
 ```zsh
 workspace open <workspace-name>
