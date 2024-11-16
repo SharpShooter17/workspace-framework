@@ -8,7 +8,7 @@ COMMANDS_DIR="$FRAMEWORK_DIR/commands" && export COMMANDS_DIR
 # Handle framework commands
 case "$1" in
     change)
-        "$COMMANDS_DIR/change.sh" "$2" || { return 1; }
+        source "$COMMANDS_DIR/change.sh" "$2" || { return 1; }
         ;;
     cmd)
         source "$COMMANDS_DIR/cmd.sh"
@@ -23,6 +23,9 @@ case "$1" in
         ;;
     drop)
         "$COMMANDS_DIR/drop.sh" "$2" || { return 1; }
+        ;;
+    export_env_vars)
+        source "$COMMANDS_DIR/export_env_vars.sh" || { return 1; }
         ;;
     help)
         "$COMMANDS_DIR/help.sh" || { return 1; }

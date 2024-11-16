@@ -28,3 +28,5 @@ else
     echo "Config file not found."
     return 1
 fi
+
+source ~/.zshrc

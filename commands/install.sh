@@ -7,19 +7,16 @@ WORKSPACE_YML="$WORKSPACE_ROOT/workspace.yml"
 
 # Check if the workspace function is already installed
 if ! grep -q "workspace() {" "$ZSHRC"; then
-  # Add function for the workspace command
   echo "Adding function 'workspace' to .zshrc file..."
-  if cat << EOF >> "$ZSHRC"
+  TMPFILE=$(mktemp)
+  cp "$ZSHRC" "$TMPFILE"
+  cat << EOF >> "$TMPFILE"
 workspace() {
   source "$WORKSPACE_SCRIPT" "\$@"
 }
 EOF
-  then
-    echo "Function 'workspace' added successfully."
-  else
-    echo "Error adding function 'workspace' to .zshrc file." >&2
-    return 1
-  fi
+  mv "$TMPFILE" "$ZSHRC"
+  echo "Function 'workspace' added successfully."
 else
   echo "Function 'workspace' is already installed in .zshrc file."
 fi
@@ -37,14 +34,25 @@ compdef _workspace workspace
 "
 
   echo "Adding autocompletion for 'workspace'..."
-  if echo "$TEXT_TO_ADD" >> "$ZSHRC"; then
-    echo "Autocompletion for 'workspace' added successfully."
-  else
-    echo "Error adding autocompletion for 'workspace'." >&2
-    return 1
-  fi
+  TMPFILE=$(mktemp)
+  cp "$ZSHRC" "$TMPFILE"
+  echo "$TEXT_TO_ADD" >> "$TMPFILE"
+  mv "$TMPFILE" "$ZSHRC"
+  echo "Autocompletion for 'workspace' added successfully."
 else
   echo "Autocompletion for 'workspace' is already installed in .zshrc file."
+fi
+
+# Invoke workspace export_env_vars
+if ! grep -q "workspace export_env_vars" "$ZSHRC"; then
+  echo "Adding invocation of workspace export_env_vars to .zshrc file..."
+  TMPFILE=$(mktemp)
+  cp "$ZSHRC" "$TMPFILE"
+  echo "workspace export_env_vars" >> "$TMPFILE"
+  mv "$TMPFILE" "$ZSHRC"
+  echo "Invocation of workspace export_env_vars added successfully."
+else
+  echo "Invocation of workspace export_env_vars is already in .zshrc file."
 fi
 
 # Create workspace.yml file in WORKSPACE_ROOT directory

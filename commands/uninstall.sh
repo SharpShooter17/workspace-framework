@@ -29,6 +29,17 @@ else
     return 1
 fi
 
+# Remove invocation of workspace export_env_vars
+if grep -q "workspace export_env_vars" "$ZSHRC"; then
+  echo "Removing invocation of workspace export_env_vars from .zshrc file..."
+  TMPFILE=$(mktemp)
+  grep -v "workspace export_env_vars" "$ZSHRC" > "$TMPFILE"
+  mv "$TMPFILE" "$ZSHRC"
+  echo "Invocation of workspace export_env_vars removed successfully."
+else
+  echo "Invocation of workspace export_env_vars not found in .zshrc file."
+fi
+
 # Remove workspace.yml file
 if [ -f "$WORKSPACE_YML" ]; then
     echo "Removing workspace.yml file..."

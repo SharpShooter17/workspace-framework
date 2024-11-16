@@ -11,12 +11,16 @@ The execution environment is Linux / MacOS.
 - [Configuration](#configuration)
     - [Framework Configuration](#framework-configuration)
     - [Workspace Configuration](#workspace-configuration)
+- [Features](#features)
+    - [Environment Variables](#environment-variables)
+    - [Commands](#commands)
 - [Commands](#commands)
     - [Change Workspace](#change)
     - [Invoke Command in Workspace](#invoke-command-in-workspace)
     - [Create Workspace](#create)
     - [Current Workspace](#current)
     - [Drop Workspace](#drop)
+    - [Export Environment Variables](#export-environment-variables)
     - [Help](#help)
     - [Install](#install)
     - [List Workspaces](#list)
@@ -75,6 +79,7 @@ In the Workspace configuration file, you can define the following settings:
 - `repositories` - a list of repositories that workspace should contain.
 - `commands` - a list of commands that can be executed in the Workspace.
 - `command_directories` - a list of directories that contain command scripts.
+- `env` - a list of environment variables that will be applied in terminal session.
 
 #### Example
 
@@ -92,15 +97,30 @@ commands:
 command_directories:
   - command-directory-1
   - command-directory-2
+
+env:
+  - name: ENV_VAR_1
+    value: value-1
+  - name: ENV_VAR_2
+    value: value-2
 ```
 
-## Commands
+## Features
+
+The Workspace Framework provides the following features:
+
+### Environment Variables
+
+You can define environment variables in the Workspace configuration file.
+These variables will be set in the terminal session.
+
+### Commands
 
 All command definitions are located in the `commands` directory.
 Each Workspace is configurable through the `workspace.yml` file in the directory indicated by the
 environment variable `WORKSPACE_<workspace-name>`.
 
-### Change
+#### Change
 
 Switches to the Workspace with the provided name and saves it in the configuration
 file `workaspace.yml`.
@@ -109,7 +129,7 @@ file `workaspace.yml`.
 workspace change <workspace-name>
 ```
 
-### Invoke command in Workspace
+#### Invoke command in Workspace
 
 Executes the command in the current Workspace directory.
 The command must be provided as an argument.
@@ -118,12 +138,13 @@ The command must be in the `commands` list in the Workspace configuration file.
 If the command is not found on the list, the framework will search for the command in the
 directories specified in the `command_directories` list.
 If the command is not found in the directories, an error message will be displayed.
+Path to the command script must be relative to the Workspace directory.
 
 ```zsh
 workspace cmd <command>
 ```
 
-### Create
+#### Create
 
 Creates a new Workspace with the specified name.
 If the Workspace already exists, an error message will be displayed.
@@ -132,7 +153,7 @@ If the Workspace already exists, an error message will be displayed.
 workspace create <workspace-name>
 ```
 
-### Current
+#### Current
 
 Show the current workspace.
 
@@ -140,7 +161,7 @@ Show the current workspace.
 workspace current
 ```
 
-### Drop
+#### Drop
 
 Drop a workspace from the configuration file and delete the workspace directory.
 
@@ -148,7 +169,15 @@ Drop a workspace from the configuration file and delete the workspace directory.
 workspace drop <workspace-name>
 ```
 
-### Help
+#### Export environment variables
+
+Exports environment variables defined in the Workspace configuration file.
+
+```zsh
+workspace export_env_vars
+```
+
+#### Help
 
 Displays more commands available in the framework.
 
@@ -156,7 +185,7 @@ Displays more commands available in the framework.
 workspace help
 ```
 
-### Install
+#### Install
 
 Install and configure the framework
 
@@ -164,7 +193,7 @@ Install and configure the framework
 workspace install
 ```
 
-### List
+#### List
 
 Lists all available workspaces.
 
@@ -172,7 +201,7 @@ Lists all available workspaces.
 workspace list
 ```
 
-### Open
+#### Open
 
 Change directory to the workspace directory.
 If you provide a workspace name, it will change to that workspace, otherwise it will change to the
@@ -182,7 +211,7 @@ current workspace.
 workspace open <workspace-name>
 ```
 
-### Uninstall
+#### Uninstall
 
 Uninstall the framework and remove workspace configuration file.
 
@@ -190,7 +219,7 @@ Uninstall the framework and remove workspace configuration file.
 workspace uninstall
 ```
 
-### Update
+#### Update
 
 Clone or update all repositories in the current workspace.
 
