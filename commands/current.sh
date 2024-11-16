@@ -16,5 +16,6 @@ do_current_workspace() {
         echo "Current workspace: $workspace_name"
     else
         echo "No current workspace set or an error occurred." >&2
+        return 1
     fi
 }

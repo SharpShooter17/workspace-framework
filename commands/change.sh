@@ -3,7 +3,8 @@
 # Check if the workspace name is provided
 if [[ -z "$1" ]]; then
     echo "You must provide a workspace name!"
-    exit 1
+    return 1
+ 1
 fi
 
 WORKSPACE_NAME="$1"
@@ -12,7 +13,7 @@ WORKSPACE_DIR="$WORKSPACE_ROOT/$WORKSPACE_NAME"
 # Check if the workspace exists
 if [[ ! -d "$WORKSPACE_DIR" ]]; then
     echo "Workspace '$WORKSPACE_NAME' does not exist!"
-    exit 1
+    return 1
 fi
 
 # Update the config file with the new workspace
@@ -21,5 +22,5 @@ if [ -f "$CONFIG_FILE" ]; then
     echo "Switched to workspace '$WORKSPACE_NAME'"
 else
     echo "Config file not found."
-    exit 1
+    return 1
 fi
