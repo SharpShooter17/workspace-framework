@@ -52,7 +52,7 @@ if [ ! -f "$WORKSPACE_YML" ]; then
   echo "Creating workspace.yml file in $WORKSPACE_ROOT..."
   cat << EOF > "$WORKSPACE_YML"
 config:
-  current_workspace: default-workspace
+  current_workspace: default
 EOF
   if [ $? -eq 0 ]; then
     echo "workspace.yml file created successfully."

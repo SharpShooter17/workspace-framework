@@ -1,24 +1,27 @@
 # Workspace Framework
 
-The Workspace Framework enables the organization of work environments. The execution environment is Linux / MacOS.
+The Workspace Framework enables the organization of work environments. The execution environment is
+Linux / MacOS.
 
 ## Table of Contents
+
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Configuration](#configuration)
 - [Commands](#commands)
-  - [Change Workspace](#change)
-  - [Invoke Command in Workspace](#invoke-command-in-workspace)
-  - [Create Workspace](#create)
-  - [Current Workspace](#current)
-  - [Drop Workspace](#drop)
-  - [Help](#help)
-  - [Install](#install)
-  - [List Workspaces](#list)
-  - [Open Workspace](#open)
-  - [Uninstall](#uninstall)
+    - [Change Workspace](#change)
+    - [Invoke Command in Workspace](#invoke-command-in-workspace)
+    - [Create Workspace](#create)
+    - [Current Workspace](#current)
+    - [Drop Workspace](#drop)
+    - [Help](#help)
+    - [Install](#install)
+    - [List Workspaces](#list)
+    - [Open Workspace](#open)
+    - [Uninstall](#uninstall)
 - [Troubleshooting](#troubleshooting)
-  - [Missing Autocompletion](#missing-autocompletion)
+    - [Missing Autocompletion](#missing-autocompletion)
 
 ## Requirements
 
@@ -43,6 +46,20 @@ will be added to the Zsh / Oh My Zsh environment.
   you to execute various commands.
 - This framework allows for the management of multiple Workspaces on a device.
 - All scripts are written for the Zsh shell.
+
+## Configuration
+
+### workspace.yml
+
+The `workspace.yml` file is used to configure the Workspace Framework. It contains settings related
+to the current workspace and other configuration options.
+
+#### Example
+
+```yaml
+config:
+  current_workspace: default # The current workspace
+```
 
 ## Commands
 
@@ -128,7 +145,7 @@ workspace open <workspace-name>
 
 ### Uninstall
 
-Uninstall the framework
+Uninstall the framework and remove workspace configuration file.
 
 ```zsh
 workspace uninstall
