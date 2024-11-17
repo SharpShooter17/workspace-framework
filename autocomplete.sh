@@ -25,6 +25,12 @@ _workspace() {
                     ;;
                 cmd)
                     local commands=($(yq --raw-output '.commands[].name' $CURRENT_WORKSPACE_CONFIG_FILE))
+                    local command_directories=($(yq --raw-output '.command_directories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
+                    for dir in "${command_directories[@]}"; do
+                        for script in "$CURRENT_WORKSPACE_DIR/$dir"/*.sh; do
+                            commands+=("$(basename "$script" .sh)")
+                        done
+                    done
                     _describe -t commands 'command' commands
                     ;;
             esac
