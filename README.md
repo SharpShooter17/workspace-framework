@@ -55,6 +55,25 @@ Shortcuts and autocompletion will be added to the Zsh / Oh My Zsh environment.
 - This framework allows for the management of multiple Workspaces on a device.
 - All scripts are written for the Zsh shell.
 
+### Example directory structure
+
+```bash
+WORKSPACES/                 # Workspace root directory
+├───workspace-1/            # Workspace directory
+│   ├───commands/           # Directory with workspace commands
+│   │   └───command-1.sh    # Command script
+│   ├───setup-command.sh    # Setup command script
+│   └───workspace.yml       # Workspace configuration file
+├───workspace-2/
+.
+.
+├───workspace-n/
+├───workspace-framework/    # Framework directory
+│   ├───commands/           # Directory with framework commands
+│   └───workspace.sh        # Framework main script
+└───workspace.yml           # Framework configuration file
+```
+
 ## Configuration
 
 ### Framework Configuration
