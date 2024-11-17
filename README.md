@@ -13,6 +13,7 @@ The execution environment is Linux / MacOS.
     - [Workspace Configuration](#workspace-configuration)
 - [Features](#features)
     - [Environment Variables](#environment-variables)
+    - [Autocomplete](#autocomplete)
     - [Commands](#commands)
 - [Commands](#commands)
     - [Change Workspace](#change)
@@ -113,6 +114,21 @@ The Workspace Framework provides the following features:
 
 You can define environment variables in the Workspace configuration file.
 These variables will be set in the terminal session.
+
+### Autocomplete
+
+The `workspace` command includes an autocomplete feature to help you quickly access available
+commands and subcommands.
+You can use the `Tab` key to autocomplete `workspace` commands and subcommands.
+For example:
+
+- Type `workspace ` and press `Tab` to see a list of available commands.
+- Type `workspace cmd ` and press `Tab` to see a list of available commands from the current
+  workspace configuration.
+- Type `workspace change ` and press `Tab` to see a list of available workspaces.
+
+The autocomplete feature will dynamically include commands from the `commands`
+and `command_directories` sections of your `workspace.yml` file.
 
 ### Commands
 
