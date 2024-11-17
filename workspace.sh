@@ -34,7 +34,8 @@ case "$1" in
         "$COMMANDS_DIR/install.sh" || { return 1; }
         ;;
     list)
-        "$COMMANDS_DIR/list.sh" || { return 1; }
+        source "$COMMANDS_DIR/list.sh"
+        do_list || { return 1; }
         ;;
     open)
         source "$COMMANDS_DIR/open.sh" "$2" || { return 1; }

@@ -4,6 +4,7 @@
 ZSHRC="$HOME/.zshrc"
 WORKSPACE_SCRIPT="$FRAMEWORK_DIR/workspace.sh"
 WORKSPACE_YML="$WORKSPACE_ROOT/workspace.yml"
+AUTOCOMPLETE_SCRIPT="$FRAMEWORK_DIR/autocomplete.sh"
 
 # Check if the workspace function is already installed
 if ! grep -q "workspace() {" "$ZSHRC"; then
@@ -22,21 +23,11 @@ else
 fi
 
 # Check if the autocompletion for the workspace command is already installed
-if ! grep -q "_workspace" "$ZSHRC"; then
-  COMMAND_LIST=$(ls "$COMMANDS_DIR" | awk -F'.sh' '{print $1}' | tr '\n' ' ')
-
-  TEXT_TO_ADD="
-# Autocompletion for workspace command
-_workspace() {
-    compadd $COMMAND_LIST
-}
-compdef _workspace workspace
-"
-
+if ! grep -q "source $AUTOCOMPLETE_SCRIPT" "$ZSHRC"; then
   echo "Adding autocompletion for 'workspace'..."
   TMPFILE=$(mktemp)
   cp "$ZSHRC" "$TMPFILE"
-  echo "$TEXT_TO_ADD" >> "$TMPFILE"
+  echo "source $AUTOCOMPLETE_SCRIPT" >> "$TMPFILE"
   mv "$TMPFILE" "$ZSHRC"
   echo "Autocompletion for 'workspace' added successfully."
 else

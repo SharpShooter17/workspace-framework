@@ -2,15 +2,29 @@
 
 source $(dirname "$0")/current.sh
 
-CURRENT_WORKSPACE=$(current_workspace)
-
-echo "Available workspaces:"
-for WORKSPACE in "$WORKSPACE_ROOT"/*; do
-    if [[ -d "$WORKSPACE" && "$WORKSPACE" != *"/workspace-framework"* ]]; then
-        if [[ "$(basename "$WORKSPACE")" == "$CURRENT_WORKSPACE" ]]; then
-            echo "> $(basename "$WORKSPACE") (Current Workspace)"
-        else
-            echo "$(basename "$WORKSPACE")"
+workspaces_list() {
+    local workspaces=()
+    for workspace in "$WORKSPACE_ROOT"/*; do
+        if [[ -d "$workspace" && "$workspace" != *"/workspace-framework"* ]]; then
+            workspaces+=("$(basename "$workspace")")
         fi
-    fi
-done
+    done
+    echo "${workspaces[@]}"
+}
+
+list() {
+    local current_workspace=$(current_workspace)
+    local workspaces=($(workspaces_list))
+    for workspace in "${workspaces[@]}"; do
+        if [[ "$workspace" == "$current_workspace" ]]; then
+            echo "> $workspace (Current Workspace)"
+        else
+            echo "$workspace"
+        fi
+    done
+}
+
+do_list() {
+    echo "Available workspaces:"
+    list
+}
