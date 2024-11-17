@@ -24,13 +24,18 @@ _workspace() {
                     _describe -t workspaces 'workspace' workspaces
                     ;;
                 cmd)
-                    local commands=($(yq --raw-output '.commands[].name' $CURRENT_WORKSPACE_CONFIG_FILE))
-                    local command_directories=($(yq --raw-output '.command_directories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
-                    for dir in "${command_directories[@]}"; do
-                        for script in "$CURRENT_WORKSPACE_DIR/$dir"/*.sh; do
-                            commands+=("$(basename "$script" .sh)")
+                    local commands=()
+                    if yq 'keys' $CURRENT_WORKSPACE_CONFIG_FILE | grep -q 'commands'; then
+                        commands=($(yq --raw-output '.commands[].name' $CURRENT_WORKSPACE_CONFIG_FILE))
+                    fi
+                    if yq 'keys' $CURRENT_WORKSPACE_CONFIG_FILE | grep -q 'command_directories'; then
+                        local command_directories=($(yq --raw-output '.command_directories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
+                        for dir in "${command_directories[@]}"; do
+                            for script in "$CURRENT_WORKSPACE_DIR/$dir"/*.sh; do
+                                commands+=("$(basename "$script" .sh)")
+                            done
                         done
-                    done
+                    fi
                     _describe -t commands 'command' commands
                     ;;
             esac
