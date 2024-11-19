@@ -2,6 +2,7 @@
 
 # Path to the .zshrc file
 ZSHRC="$HOME/.zshrc"
+FRAMEWORK_DIR="$(cd "$(dirname "${(%):-%N}")" && pwd)" && export FRAMEWORK_DIR
 WORKSPACE_SCRIPT="$FRAMEWORK_DIR/workspace.sh"
 WORKSPACE_YML="$WORKSPACE_ROOT/workspace.yml"
 AUTOCOMPLETE_SCRIPT="$FRAMEWORK_DIR/autocomplete.sh"
@@ -62,6 +63,11 @@ EOF
 else
   echo "workspace.yml file already exists in $WORKSPACE_ROOT."
 fi
+
+## Grant execute permission to the workspace script and commands
+chmod +x "$WORKSPACE_SCRIPT"
+chmod +x "$COMMANDS_DIR"/*.sh
+chmod +x $FRAMEWORK_DIR/uninstall.sh
 
 # Refresh the shell configuration
 echo "Installation complete. Refreshing shell..."

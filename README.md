@@ -22,10 +22,8 @@ The execution environment is Linux / MacOS.
         - [Drop Workspace](#drop)
         - [Export Environment Variables](#export-environment-variables)
         - [Help](#help)
-        - [Install](#install)
         - [List Workspaces](#list)
         - [Open Workspace](#open)
-        - [Uninstall](#uninstall)
         - [Update Workspace](#update)
 - [Troubleshooting](#troubleshooting)
     - [Missing Autocompletion](#missing-autocompletion)
@@ -42,9 +40,8 @@ The execution environment is Linux / MacOS.
 To install the framework, run the following command:
 
 ```zsh
-chmode +x workspace.sh
-chmode +x commands/*.sh
-./workspace.sh install
+chmode +x install.sh
+./install.sh
 ```
 
 The framework will be installed and configured in your environment.
@@ -221,14 +218,6 @@ Displays more commands available in the framework.
 workspace help
 ```
 
-#### Install
-
-Install and configure the framework
-
-```zsh
-workspace install
-```
-
 #### List
 
 Lists all available workspaces.
@@ -245,14 +234,6 @@ current workspace.
 
 ```zsh
 workspace open <workspace-name>
-```
-
-#### Uninstall
-
-Uninstall the framework and remove workspace configuration file.
-
-```zsh
-workspace uninstall
 ```
 
 #### Update

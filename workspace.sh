@@ -30,18 +30,12 @@ case "$1" in
     help)
         "$COMMANDS_DIR/help.sh" || { return 1; }
         ;;
-    install)
-        "$COMMANDS_DIR/install.sh" || { return 1; }
-        ;;
     list)
         source "$COMMANDS_DIR/list.sh"
         do_list || { return 1; }
         ;;
     open)
         source "$COMMANDS_DIR/open.sh" "$2" || { return 1; }
-        ;;
-    uninstall)
-        "$COMMANDS_DIR/uninstall.sh" || { return 1; }
         ;;
     update)
         source "$COMMANDS_DIR/update.sh"
