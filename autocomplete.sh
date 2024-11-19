@@ -26,10 +26,10 @@ _workspace() {
                 cmd)
                     local commands=()
                     if yq 'keys' $CURRENT_WORKSPACE_CONFIG_FILE | grep -q 'commands'; then
-                        commands=($(yq --raw-output '.commands[].name' $CURRENT_WORKSPACE_CONFIG_FILE))
+                        commands=($(yq e -r '.commands[].name' $CURRENT_WORKSPACE_CONFIG_FILE))
                     fi
                     if yq 'keys' $CURRENT_WORKSPACE_CONFIG_FILE | grep -q 'command_directories'; then
-                        local command_directories=($(yq --raw-output '.command_directories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
+                        local command_directories=($(yq e -r '.command_directories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
                         for dir in "${command_directories[@]}"; do
                             for script in "$CURRENT_WORKSPACE_DIR/$dir"/*.sh; do
                                 commands+=("$(basename "$script" .sh)")

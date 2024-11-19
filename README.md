@@ -42,6 +42,8 @@ The execution environment is Linux / MacOS.
 To install the framework, run the following command:
 
 ```zsh
+chmode +x workspace.sh
+chmode +x commands/*.sh
 ./workspace.sh install
 ```
 

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 current_workspace() {
-  yq '.config.current_workspace' "$CONFIG_FILE" | tr -d '"'
+  yq e '.config.current_workspace' "$CONFIG_FILE" | tr -d '"'
 }
 
 current_workspace_dir() {

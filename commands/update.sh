@@ -6,7 +6,7 @@ CURRENT_WORKSPACE_DIR=$(current_workspace_dir)
 CURRENT_WORKSPACE_CONFIG_FILE=$(current_workspace_config_file)
 
 update_repositories() {
-    local repos=($(yq --raw-output '.repositories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
+    local repos=($(yq e -r '.repositories[]' $CURRENT_WORKSPACE_CONFIG_FILE))
 
     for repo in $repos; do
         local repo_name=$(echo $repo | gawk -F'[:/.]' '{print $(NF-1)}')
