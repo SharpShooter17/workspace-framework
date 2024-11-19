@@ -35,7 +35,7 @@ do_cmd() {
     local script_path="$CURRENT_WORKSPACE_DIR/$command_script"
 
     if [[ -f "$script_path" ]]; then
-        "$script_path" "${@:2}"
+        (cd "$(dirname "$script_path")" && "./$(basename "$script_path")" "${@:2}")
     else
         echo "Script '$script_path' does not exist in the '$workspace_name' workspace."
         return 1
