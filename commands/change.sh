@@ -17,7 +17,7 @@ fi
 
 # Update the config file with the new workspace
 if [ -f "$CONFIG_FILE" ]; then
-    yq e ".config.current_workspace = \"$WORKSPACE_NAME\"" "$CONFIG_FILE" -y >> "$CONFIG_FILE.tmp" && mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
+    yq e ".config.current_workspace = \"$WORKSPACE_NAME\"" "$CONFIG_FILE" >> "$CONFIG_FILE.tmp" && mv "$CONFIG_FILE.tmp" "$CONFIG_FILE"
     if [[ $? -eq 0 ]]; then
         echo "Switched to workspace '$WORKSPACE_NAME'"
     else
