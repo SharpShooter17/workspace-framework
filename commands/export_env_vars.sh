@@ -22,7 +22,7 @@ fi
 # Function to export environment variables from the workspace configuration file
 export_env_vars() {
     # Check if the env section exists in the configuration file
-    if ! yq e '.env' $CURRENT_WORKSPACE_CONFIG_FILE > /dev/null 2>&1; then
+    if ! yq e '.env[]' $CURRENT_WORKSPACE_CONFIG_FILE > /dev/null 2>&1; then
         echo "Error: 'env' section not found in the configuration file."
         return 0
     fi
