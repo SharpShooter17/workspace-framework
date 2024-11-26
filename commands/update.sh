@@ -10,7 +10,7 @@ update_repositories() {
 
     for repo in $repos; do
         local repo_name=$(echo $repo | gawk -F'[:/.]' '{print $(NF-1)}')
-        local repo_dir="$CURRENT_WORKSPACE_DIR/$repo_name"
+        local repo_dir="$CURRENT_WORKSPACE_DIR/repositories/$repo_name"
 
         if [[ -d "$repo_dir/.git" ]]; then
             echo "Updating repository $repo..."

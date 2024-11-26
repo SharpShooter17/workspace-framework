@@ -239,6 +239,7 @@ workspace open <workspace-name>
 #### Update
 
 Clone or update all repositories in the current workspace.
+Repositories will be cloned to the `WORKSPACE_ROOT/<workspace-name>/repositories` directory.
 
 ```zsh
 workspace update
