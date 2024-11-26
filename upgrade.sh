@@ -6,7 +6,6 @@ FILES_TO_CHMOD=(
     "install.sh"
     "uninstall.sh"
     "upgrade.sh"
-    "commands/*.sh"
 )
 
 # Function to reset and pull the latest changes from Git
@@ -20,6 +19,8 @@ add_execution_permissions() {
     for file in $FILES_TO_CHMOD; do
         chmod +x $file
     done
+
+    chmod +x commands/*.sh
 }
 
 # Main script execution
