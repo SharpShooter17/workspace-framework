@@ -61,8 +61,10 @@ WORKSPACES/                 # Workspace root directory
 ├───workspace-1/            # Workspace directory
 │   ├───commands/           # Directory with workspace commands
 │   │   └───command-1.sh    # Command script
+│   ├───repositories/       # Directory with repositories
 │   ├───setup-command.sh    # Setup command script
-│   └───workspace.yml       # Workspace configuration file
+│   ├───workspace.yml       # Workspace configuration file
+|   └───.env                # Environment variables file
 ├───workspace-2/
 .
 .
@@ -129,8 +131,18 @@ The Workspace Framework provides the following features:
 
 ### Environment Variables
 
-You can define environment variables in the Workspace configuration file.
+You can define environment variables in the Workspace configuration file using the `env` key.
+The environment variables can be also set in `.env` file in the Workspace directory.
 These variables will be set in the terminal session.
+
+#### Example
+
+.env file:
+
+```env
+ENV_VAR_1=value-1
+ENV_VAR_2=value-2
+```
 
 ### Autocomplete
 

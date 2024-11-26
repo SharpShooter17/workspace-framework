@@ -21,16 +21,21 @@ fi
 
 # Function to export environment variables from the workspace configuration file
 export_env_vars() {
-    # Check if the env section exists in the configuration file
-    if ! yq e '.env[]' $CURRENT_WORKSPACE_CONFIG_FILE > /dev/null 2>&1; then
-        echo "Error: 'env' section not found in the configuration file."
-        return 0
+    # Export variables from the workspace configuration file
+    if yq e '.env[]' $CURRENT_WORKSPACE_CONFIG_FILE > /dev/null 2>&1; then
+        local env_vars=$(yq e -r '.env[] | "\(.name)=\(.value)"' $CURRENT_WORKSPACE_CONFIG_FILE)
+        for env_var in ${(f)env_vars}; do
+            export $env_var
+        done
     fi
 
-    local env_vars=$(yq e -r '.env[] | "\(.name)=\(.value)"' $CURRENT_WORKSPACE_CONFIG_FILE)
-    for env_var in ${(f)env_vars}; do
-        export $env_var
-    done
+    # Export variables from the .env file if it exists
+    local env_file="$CURRENT_WORKSPACE_DIR/.env"
+    if [[ -f "$env_file" ]]; then
+        set -a
+        source "$env_file"
+        set +a
+    fi
 }
 
 # Call the function to export the environment variables
